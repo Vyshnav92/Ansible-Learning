@@ -1,0 +1,8 @@
+---
+
+- name: test client connectivity
+  hosts: all
+
+  tasks:
+  - name: test client connections
+    ping: 

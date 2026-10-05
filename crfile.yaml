@@ -1,0 +1,31 @@
+---
+
+- name: Create and delete a file
+  hosts: all
+  become: true
+  tasks:
+  - name: create directory
+    file:
+     path:  /tmp/testfolder
+     owner: ubuntu
+     mode: 770
+     state: directory
+
+  - name: create the file inside the directory
+    file:
+     path: /tmp/testfolder/testfile.txt
+     state: touch
+  
+  - name: stat the new file
+    stat:
+     path: /tmp/testfolder/testfile.txt
+    register: rf
+  
+  - name: show file status from the container
+    debug:
+     msg: file status and attributes {{ rf }}
+  
+  - name: delete the file
+    file:
+     path: /tmp/testfolder/testfile.txt
+     state: absent

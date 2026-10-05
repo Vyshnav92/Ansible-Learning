@@ -1,0 +1,16 @@
+---
+
+- name: adding text to a file
+  hosts: all
+  
+
+  tasks:
+  - name: create a file
+    file:
+      path: /tmp/george
+      state: touch
+
+  - name: add content to the created file
+    blockinfile:
+      path: /tmp/george
+      block: yo geng george is in da hood bruh we gonna hav hennesy and shi typeshi geng
